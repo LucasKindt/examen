@@ -1,0 +1,11 @@
+<img src="{{ asset('images/logo.png') }}" alt="logo"/>
+
+<p>
+    Bevestig uw email via de volgende link: <br><br>
+    <a href="{{ signedUrl|raw }}">Email bevestigen</a>.
+    Deze link verloopt over {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
+</p>
+
+<p>
+    Bedankt!
+</p>

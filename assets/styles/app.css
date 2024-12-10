@@ -1,0 +1,54 @@
+* {
+    font-family: "League Spartan", sans-serif;
+}
+
+body {
+    background-color: #1F1F1F;
+}
+
+.bg-dark {
+    background-color: #1F1F1F!important;
+}
+
+.btn.btn-primary {
+    background-color: #808000;
+    border:none;
+    border-radius:8px;
+    font-weight: 500;
+}
+
+.btn.btn-secondary {
+    background-color: transparent;
+    border:1px solid #808000;
+    border-radius:8px;
+    font-weight: 500;
+}
+
+.very-rounded{
+    border-radius: 22px;
+}
+
+.border-circle {
+    border-radius: 50%;
+    width:175px;
+    height:175px;
+}
+
+.big-text {
+    font-size: 60px;
+}
+
+#loading-spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    display: none; /* Hidden by default */
+}
+
+.product-image {
+    object-fit: cover; /* Zorgt ervoor dat de afbeelding netjes bijsnijdt */
+    height: 200px; /* Stel een consistente hoogte in */
+    border-radius: 10px; /* Afronding */
+}

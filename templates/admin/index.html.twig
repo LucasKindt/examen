@@ -1,0 +1,33 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content_title %}Dashboard{% endblock %}
+
+{% block main %}
+
+    <div class="container">
+        <div>
+            <label for="yearSelector" class="form-label">Selecteer een jaar:</label>
+            <select id="yearSelector" class="form-select" onchange="changeYear(this.value)">
+                {% for year in years %}
+                    <option value="{{ year }}" {% if year == selectedYear %}selected{% endif %}>
+                        {{ year }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="container-fluid" id="charts">
+            <h3>Bezoekers</h3>
+            {{ render_chart(visitorChart) }}
+
+            <h3>Omzet</h3>
+            {{ render_chart(revenueChart) }}
+        </div>
+    </div>
+
+    <script>
+        function changeYear(year) {
+            // Reload the page with the selected year as a query parameter
+            window.location.href = '?year=' + year;
+        }
+    </script>
+{% endblock %}

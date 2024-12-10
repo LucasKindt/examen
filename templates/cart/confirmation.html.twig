@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Je haar zit goed!{% endblock %}
+
+{% block body %}
+<div class="container mt-5 text-center text-white">
+    <h1>Bedankt!</h1>
+    <h1>Uw bestelling is geplaatst</h1>
+    <h2>Bestelnummer: {{ order.number }}</h2>
+    <h3>Een bevestiging is naar uw emailadres verstuurd</h3>
+</div>
+{% endblock %}

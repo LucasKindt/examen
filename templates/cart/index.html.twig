@@ -1,0 +1,169 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Je haar zit goed!{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div id="loading-spinner" class="text-center d-none">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+        <h1 class="text-center text-white">Uw Winkelmand</h1>
+        <div class="cart-container col-md-6 mx-auto">
+        {% if cart is empty %}
+            <p class="text-center text-white">Je winkelwagen is leeg.</p>
+        {% else %}
+                {% for item in cart %}
+                <div class="cart-item d-flex align-items-center my-4 p-3 rounded bg-dark" data-product-id="{{ item.product.id }}">
+                    <img src="{{ asset('images/products/' ~ item.product.image) }}" alt="{{ item.product.name }}" class="w-25 img-fluid very-rounded">
+                    <div class="cart-details mx-3">
+                        <h3 class="text-white">{{ item.product.name }}</h3>
+                        <p class="text-success">Op Voorraad</p>
+                    </div>
+                    <div class="cart-quantity d-flex align-items-center mx-auto">
+                        <a class="btn btn-light btn-sm" onclick="removeQuantity(this)">-</a>
+                        <span class="text-white mx-3">{{ item.quantity }}</span>
+                        <a class="btn btn-light btn-sm" onclick="addQuantity(this)">+</a>
+                    </div>
+                </div>
+                {% endfor %}
+
+            <div class="col-8 bg-dark p-4 rounded mt-5 mx-auto">
+                <form method="post" action="{{ path('cart_checkout') }}">
+                    <div class="form-group mb-3">
+                        <input type="text" name="name" class="form-control" placeholder="Naam" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="tel" name="phone" class="form-control" placeholder="Telefoonnummer" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="email" name="email" class="form-control" placeholder="Emailadres" required>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input type="checkbox" name="agreement" class="form-check-input" id="agreement" required>
+                        <label for="agreement" class="form-check-label text-white">Ik ga akkoord met het afhalen van mijn bestelling</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Bestelling plaatsen</button>
+                </form>
+            </div>
+        {% endif %}
+        </div>
+    </div>
+    <script>
+        function showLoadingSpinner() {
+            const spinner = document.getElementById('loading-spinner');
+            spinner.classList.remove('d-none'); // Show spinner
+        }
+
+        function hideLoadingSpinner() {
+            const spinner = document.getElementById('loading-spinner');
+            spinner.classList.add('d-none'); // Hide spinner
+        }
+
+        function disableButtons(container, state) {
+            const buttons = container.querySelectorAll('button');
+            buttons.forEach((button) => {
+                button.disabled = state; // Disable or enable buttons
+            });
+        }
+
+        function addQuantity(event) {
+            const cartItem = event.parentNode.closest('.cart-item');
+            const quantitySpan = cartItem.querySelector('span');
+            const productId = cartItem.dataset.productId;
+
+            showLoadingSpinner(); // Show spinner
+            disableButtons(cartItem, true); // Disable buttons
+
+            fetch(`/cart/add/${productId}`, {
+                method: 'POST',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    quantity: 1,
+                }),
+            })
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    if (data.success) {
+                        quantitySpan.textContent = data.updatedQuantity; // Update UI
+                    } else {
+                        alert(data.message || 'Er is een fout opgetreden.');
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert('Kan de hoeveelheid niet bijwerken.');
+                })
+                .finally(() => {
+                    hideLoadingSpinner(); // Hide spinner
+                    disableButtons(cartItem, false); // Re-enable buttons
+                });
+        }
+
+        function removeQuantity(event) {
+            const cartItem = event.parentNode.closest('.cart-item');
+            const quantitySpan = cartItem.querySelector('span');
+            const productId = cartItem.dataset.productId;
+
+            showLoadingSpinner(); // Show spinner
+            disableButtons(cartItem, true); // Disable buttons
+
+            fetch(`/cart/remove/${productId}`, {
+                method: 'POST',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    quantity: 1, // Decrease quantity by 1
+                }),
+            })
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    if (data.success) {
+                        if (data.updatedQuantity <= 0) {
+                            // If the product is removed, dynamically remove the cart item
+                            cartItem.remove();
+                            data.cartEmpty = true;
+                        } else {
+                            // Otherwise, update the quantity in the UI
+                            quantitySpan.textContent = data.updatedQuantity;
+                            data.cartEmpty = false;
+                        }
+
+                        // Check if the cart is now empty
+                        if (data.cartEmpty) {
+                            document.querySelector('.cart-container').innerHTML = `
+                        <p class="text-center text-white">Je winkelwagen is leeg.</p>
+                    `;
+                        }
+
+                    } else {
+                        alert(data.message || 'Er is een fout opgetreden.');
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert('Kan de hoeveelheid niet bijwerken.');
+                })
+                .finally(() => {
+                    hideLoadingSpinner(); // Hide spinner
+                    disableButtons(cartItem, false); // Re-enable buttons
+                });
+        }
+    </script>
+{% endblock %}

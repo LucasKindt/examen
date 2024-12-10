@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "examen-441715",
+  "private_key_id": "e6993c5d61e0fc86f48b81da880db0938387439f",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCqzo6LSQKGG515\nu8/k8pShzbiT3BRb0Aq6MOicG1JxlBJtuBOz5wNOz4Ms5HX5R4wSEAyVp8nYpYYc\nrDq9qSCkaz3F/a8RqwY3VESk25Z2+F4EpvVNIjucGvYtol3zq7IBJnK9wsgto/J3\nZaW2I/n3BJbZlI/ddkbjUtb1/zEtWQVemFztvZwdbYdWw9rWpR/TIqzl05Lh7gZy\nLWvE9+07jrUI/G2MBvrmOicu1XREGxF90BuZsMV3f+uaz48g9YdSIP2xltbzqSR2\nDVupDKlEl3WUOuaxK+pF0oBaLQYnxprU1g19BmXM+YGLjjOseDV3ffD+NiZ3z1dn\n0gm1eC0rAgMBAAECggEABlJyUxRSb5e5gG0fLVdYpZSDt952Dd/pak5BsmV767Tb\nV3oCcvfrskej/iliCQrbLztlaZARc19fU2YTaM5ICeAwkbZXMs1bcYscXQkqg2la\njPBjWapiInItBwtgmSTcmmG5XFuQt3+/HbsU2fdMEc2troyPbXuYYvUI19Dxq+Nj\nAJruQ0CRn2pmPiVtZRH39xKO27U4uLLcFDG4Zbpa89cUoUJ5LUPJjXolrOJ+joJR\nw8bjCDHeyWGpI1pHQolZ8EqZZhG7wI6+2kb6JmTtMBIHHl8Iy47ELcTsmXl17Yhr\nDYED2YDmD7TbSwMpVcI73yLH4hsp/2awfltebkR5wQKBgQDSe+lX8BCqTDnOdsQL\nHpN4gbhQC/wTW3BBy4YsfHNqJDJb3f4SQY7DBdm1MPKriq0zXrnp4+/4k5T4CrFL\nAxZpr5mEnwHvxxJPpeFfNzg+Saij5Q1wi8UUSXBuTAHvQsM599PIMCSlqJg/teiV\ncs7karEmjNm/k/fEGLabwD+wqQKBgQDPvizgoxkpirOjOlABwDeY+dNksV4tTmPv\ncpmdqRQ12TYvZm33sU+EB8nUVTD/+sTcVQ1lAcOuky5J72dDL7fOZmhMEuoavEbO\njdKgomnXL1yKmfa7KhdwvEghTQf+dMbjxCfRup7bRr+ANH2onxTpa4CbXuMdd8LX\nWDpYA7/PswKBgBwvi6fC9fhYDMWhEc+LYKQaetv9Ptw4umeVIXqDj9D+19+Fcqhv\nLvbeqbChxV1DTL48SRkQ9OmMmb49cFBjMXUllqEzycaaGdGgnPVrJ5TvuC16Vrpj\nfRiiXPPoKboobowsq6d7Cu1EDl85tNOOdDYSM3a+FcqZvev8gzeIHv9BAoGAWNQx\nrlAvNzMmwtnxUf5WB6Rzfq/U3DyTwNRY2TBuAuSBJd1/khUQMh1+cLuIuzwIJ0p6\n8sDBYolulpC2r+TcjHX/jN/dmFb/U90SvjsUVL3crStOdBN4eG0Zzpt4mpZmYQgE\nGsrYmFx1ECXhwVNchr6//C+jn3sRJjGEqRPZVb8CgYBfYDUOXXI6b2lhGvT5Pq8+\nFMrBse9VI0OiUa4cRZchBvo0bCPvvWU6awh7fkqgiPP8cXcBOgTqI/H9KPv8zrWG\nhLFHEdwZrbO3IyQp23DoShy6vX9DufGwy1KRLHkhRue+h/tNQWbnbfR7IEi2sywz\nKx07qtUnmYuUommtBb36nA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "jehaarzitgoed@examen-441715.iam.gserviceaccount.com",
+  "client_id": "113435327628141057907",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/jehaarzitgoed%40examen-441715.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

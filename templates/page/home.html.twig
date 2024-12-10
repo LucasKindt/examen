@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Je haar zit goed!{% endblock %}
+
+{% block body %}
+    <div class="container-md container-fluid px-4 px-md-0">
+        <div class="row mb-5">
+            <div class="col-lg-5 col-md-6 col-12 d-flex align-items-center">
+                <div class="col-12">
+                    <h1 class="text-white fw-bold big-text">Kapperzaak "Je haar zit goed!"</h1>
+                    <p class="text-white fw-semibold">Wij zorgen ervoor dat jij weer met een geweldig kapsel naar buiten gaat!</p>
+                    <a class="btn btn-primary" href="{{ path('app_home') }}">Afspraak maken</a>
+                </div>
+            </div>
+            <div class="col-lg-7 col-md-6 col-12 text-center mt-4 mt-md-0">
+                <img class="img-fluid very-rounded" alt="foto van de salon" src="{{ asset('images/others/salonfoto.jpg') }}"/>
+            </div>
+        </div>
+
+        <div id="diensten" class="row mt-5 text-center">
+            <div class="col-12 text-white">
+                <h5>Diensten</h5>
+                <h1>We zijn er voor iedereen!</h1>
+            </div>
+
+            <div class="col-12">
+                <div class="row justify-content-center">
+                    {% for treatment in treatments %}
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-12 text-center very-rounded p-3 mb-3
+                            {% if loop.index is even %}bg-white{% else %}bg-dark{% endif %}">
+                            <img class="img-fluid border-circle mb-3" src="{{ asset('images/treatments/' ~ treatment.image) }}" alt="{{ treatment.name }}"/>
+                            <h3 class="{% if loop.index is even %}text-dark{% else %}text-white{% endif %} fw-bold mt-3">{{ treatment.name }}</h3>
+                            <p class="{% if loop.index is even %}text-dark{% else %}text-white{% endif %} fw-semibold mt-3">{{ treatment.description }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 row mt-5 mx-auto">
+            <div class="col-12 text-white text-center">
+                <h1>Populairste Producten!</h1>
+            </div>
+            <div class="col-12">
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 col-md-6 col-sm-12 py-3">
+                        <a target="__blank" href="{{ path('app_webshop_detail',{'id': topProducts[0].id}) }}" class="bg-white text-center very-rounded py-5 h-100 d-flex">
+                            <img class="img-fluid very-rounded m-auto" src="{{ asset('images/products/'~topProducts[0].image) }}" alt="product"/>
+                        </a>
+                    </div>
+                    <div class="row col-lg-8 col-md-6 col-sm-12">
+                        {% for i in 1..4 %}
+                            <div class="col-6 py-3">
+                                <a target="__blank" href="{{ path('app_webshop_detail',{'id': topProducts[i].id}) }}" class="bg-white text-center very-rounded py-5 d-inline-block w-100 h-100">
+                                    <img class="product-image img-fluid" src="{{ asset('images/products/'~topProducts[i].image) }}" alt="product"/>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

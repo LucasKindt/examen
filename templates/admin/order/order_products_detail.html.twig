@@ -1,0 +1,17 @@
+{# templates/admin/order_products_detail.html.twig #}
+<table>
+    <thead>
+    <tr>
+        <th>Product</th>
+        <th>Hoeveelheid</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for orderProduct in field.value %}
+        <tr>
+            <td>{{ orderProduct.product.name }}</td>
+            <td class="text-end">{{ orderProduct.amount }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
